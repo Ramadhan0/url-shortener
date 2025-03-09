@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { User, ChevronDown } from "lucide-react";
 
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-white p-4 shadow-sm flex items-center justify-between h-16">
-      {/* Empty div to push profile to the right */}
+    <div className="fixed top-0 left-0 w-full bg-white p-4 shadow-sm flex items-center justify-between h-24">
       <div></div>
-
-      {/* Profile Dropdown (Top-Right Corner) */}
       <div className="relative ml-auto">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -20,7 +18,6 @@ export default function Navbar() {
           <ChevronDown className="w-4 h-4 text-gray-600" />
         </button>
 
-        {/* Dropdown Menu */}
         {isOpen && (
           <div className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg">
             <div className="p-4 border-b">

@@ -4,14 +4,14 @@ import Main from "./components/main";
 
 export default function App() {
   return (
-    <div className="relative flex h-screen bg-gray-100">
-      <SideBar className="z-50" />
+    <div className="flex h-screen bg-gray-100">
+      <SideBar />
 
       <main className="flex-1 p-6">
-        <Navbar className="z-40" />
+        <Navbar />
+
         <Main />
       </main>
     </div>
   );
 }
-

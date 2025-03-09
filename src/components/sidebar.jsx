@@ -1,49 +1,39 @@
 import PropTypes from "prop-types";
+import { Home, Link, BarChart } from "lucide-react";
 
 export function SideBar() {
-  return (
-    <aside className="fixed top-0 left-0 h-full w-64 bg-white shadow-md p-4 flex flex-col">
-      {/* Sidebar Title */}
-      <h1 className="text-xl font-bold mb-4">Bitly</h1>
-
-      {/* Navigation */}
-      <nav className="space-y-2 flex-grow">
-        <NavItem label="Home" />
-        <NavItem label="Links" active />
-        <NavItem label="QR Codes" />
-        <NavItem label="Pages" />
-        <NavItem label="Analytics" />
-        <NavItem label="Settings" />
-      </nav>
-
-      {/* Create New Button */}
-      <button className="mt-auto bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-        Create New
-      </button>
-    </aside>
-  );
+	return (
+		<aside className="fixed top-0 left-0 w-64 h-full bg-white shadow-lg px-6 z-50">
+			<h1 className="text-xl font-bold mb-4 mt-10 ">Link Shortener</h1>
+			<nav className="space-y-2 mt-20">
+				<NavItem label="Home" icon={<Home size={18} />} />
+				<NavItem label="Links" icon={<Link size={18} className="text-blue-600" />} active />
+				<NavItem label="Analytics" icon={<BarChart size={18} />} />
+			</nav>
+		</aside>
+	);
 }
 
-function NavItem({ label, active, trial }) {
-  return (
-    <div
-      className={`p-2 rounded-lg cursor-pointer flex justify-between items-center ${
-        active ? "bg-gray-200 font-semibold" : "hover:bg-gray-100"
-      }`}
-    >
-      <span>{label}</span>
-      {trial && (
-        <span className="text-xs bg-purple-500 text-white px-2 py-1 rounded">
-          TRY IT
-        </span>
-      )}
-    </div>
-  );
+function NavItem({ label, icon, active }) {
+	return (
+		<div
+			className={`flex items-center py-2 rounded-md cursor-pointer space-x-3 ${active ? "bg-blue-100" : "hover:bg-gray-100"
+				}`}
+		>
+			<span className={`${active ? "h-4 w-1 bg-blue-600 rounded-sm  " : "hover:bg-gray-100"}`}></span>
+			<div
+				className={`flex items-center rounded-lg cursor-pointer space-x-3`}
+			>{icon}
+				<span className="text-md font-medium">{label}</span>
+			</div>
+
+		</div>
+	);
 }
 
 // PropTypes validation
 NavItem.propTypes = {
-  label: PropTypes.string.isRequired,
-  active: PropTypes.bool,
-  trial: PropTypes.bool,
+	label: PropTypes.string.isRequired,
+	icon: PropTypes.element,
+	active: PropTypes.bool,
 };
