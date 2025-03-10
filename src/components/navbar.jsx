@@ -6,6 +6,12 @@ import { User, ChevronDown } from "lucide-react"
 export default function Navbar({ userData }) {
   const [isOpen, setIsOpen] = useState(false)
 
+  const logout = () => {
+    localStorage.removeItem("accessToken")
+    localStorage.removeItem("refreshToken")
+    return window.location.href = "/login"
+  }
+
   return (
     <div className="fixed top-0 left-0 w-full bg-white p-4 shadow-sm flex items-center justify-between h-24">
       <div></div>
@@ -35,7 +41,8 @@ export default function Navbar({ userData }) {
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Webinars</li>
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Bitly Terms</li>
             </ul>
-            <div className="p-4 border-t text-red-600 hover:bg-gray-100 cursor-pointer text-center">
+            <div className="p-4 border-t text-red-600 hover:bg-gray-100 cursor-pointer text-center"
+            onClick={logout}>
               Sign out
             </div>
           </div>
