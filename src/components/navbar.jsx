@@ -9,7 +9,7 @@ export default function Navbar({ userData }) {
   const logout = () => {
     localStorage.removeItem("accessToken")
     localStorage.removeItem("refreshToken")
-    return window.location.href = "/login"
+    return window.location.href = "/auth/login"
   }
 
   return (

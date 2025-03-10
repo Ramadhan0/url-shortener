@@ -6,6 +6,7 @@ import Register from "./components/register";
 import { useEffect, useState } from "react";
 import { SideBar } from "./components/sidebar";
 import { queryClient } from "./config/queryClient";
+import ShortLinkPage from "./components/shortLink";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
@@ -18,7 +19,7 @@ export default function App() {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("accessToken");
-      console.log(token)
+      console.log(token);
       if (token) {
         try {
           const response = (await apiClient.get("/user")).data;
@@ -26,7 +27,6 @@ export default function App() {
           console.log(response.data);
           setUserData(response.data);
           setIsAuthenticated(true);
-
         } catch (error) {
           console.error("Failed to fetch user data", error);
           setIsAuthenticated(false);
@@ -47,8 +47,9 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
+          <Route path="/:shortcode" element={<ShortLinkPage />} />
           <Route
-            path="/login"
+            path="/auth/login"
             element={
               isAuthenticated ? (
                 <Navigate to="/" replace />
@@ -58,7 +59,7 @@ export default function App() {
             }
           />
           <Route
-            path="/register"
+            path="auth/register"
             element={<Register setIsAuthenticated={setIsAuthenticated} setUserData={setUserData} />}
           />
           <Route
@@ -73,7 +74,7 @@ export default function App() {
                   </main>
                 </div>
               ) : (
-                <Navigate to="/login" replace />
+                <Navigate to="auth/login" replace />
               )
             }
           />
