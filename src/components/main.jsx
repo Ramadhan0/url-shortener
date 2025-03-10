@@ -1,3 +1,4 @@
+// import PropTypes from "prop-types"
 import { Copy, Delete, EditIcon } from "lucide-react"
 
 export default function Main() {
