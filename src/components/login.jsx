@@ -1,8 +1,7 @@
 import { useState } from "react"
 import PropTypes from "prop-types"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import apiClient from "../config/apiClient"
-
 
 export default function Login({ setIsAuthenticated, setUserData }) {
   const [email, setEmail] = useState("")
@@ -11,11 +10,11 @@ export default function Login({ setIsAuthenticated, setUserData }) {
   const [passwordError, setPasswordError] = useState("")
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
   const passwordRegex = /^(?=.*\d).{6,}$/
 
+  const navigate = useNavigate() 
+
   const handleLogin = async () => {
-    // Validate email
     if (!email) {
       setEmailError("Email is required")
       return
@@ -37,13 +36,16 @@ export default function Login({ setIsAuthenticated, setUserData }) {
     setPasswordError("")
 
     try {
-      const response = await apiClient.post("/auth/login", { email, password })
+      const response = await (await apiClient.post("/auth/login", { email, password })).data
 
       localStorage.setItem("accessToken", response.data.accessToken)
       localStorage.setItem("refreshToken", response.data.refreshToken)
 
+      console.log(response.data)
       setUserData(response.data.user)
       setIsAuthenticated(true)
+
+      navigate("/")
     } catch (error) {
       console.error("Login failed", error)
       setEmailError("Invalid email or password")

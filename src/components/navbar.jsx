@@ -47,5 +47,5 @@ export default function Navbar({ userData }) {
 
 
 Navbar.propTypes = {
-  userData: PropTypes.func.userData,
+  userData: PropTypes.object,
 }

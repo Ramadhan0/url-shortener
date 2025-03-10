@@ -50,7 +50,7 @@ export default function Register({ setIsAuthenticated, setUserData }) {
 		setPasswordError("")
 
 		try {
-			const response = await apiClient.post("/auth/register", { username, email, password })
+			const response = await (await apiClient.post("/auth/register", { username, email, password })).data
 
 			localStorage.setItem("accessToken", response.data.accessToken)
 			localStorage.setItem("refreshToken", response.data.refreshToken)

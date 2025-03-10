@@ -13,9 +13,11 @@ export default function App() {
   const [userData, setUserData] = useState(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
+  console.log(userData)
+
   useEffect(() => {
     const token = localStorage.getItem("refreshToken")
-    setIsAuthenticated(!!token) // Check if token is available for authentication
+    setIsAuthenticated(!!token)
   }, [])
 
   return (
