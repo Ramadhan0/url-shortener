@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: my-react-app:latest
+    container_name: url_shortener
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - frontend_network
+
+networks:
+  frontend_network:
+    driver: bridge
