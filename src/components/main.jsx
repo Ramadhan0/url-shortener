@@ -8,7 +8,7 @@ export default function Main() {
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
   const [copied, setCopied] = useState(null)
-  const serverIp = "localhost"
+  const serverIp = "137.184.36.97"
 
   const fetchLinks = async () => {
     try {
