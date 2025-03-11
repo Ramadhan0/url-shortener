@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: my-react-app:latest
+    image: url_shortener:latest
     container_name: url_shortener
     build:
       context: .
