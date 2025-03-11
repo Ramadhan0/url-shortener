@@ -38,8 +38,7 @@ jobs:
             cd url-shortener/
 
             # Run Docker Compose to bring up the app
-            docker stop url_shortener
-            docker-compose up -d url_shortener
+            docker-compose up -d
           EOF
         env:
           DO_SSH_HOST: ${{ secrets.DO_SSH_HOST }}
